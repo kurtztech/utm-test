@@ -13,7 +13,7 @@ export default function Home() {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', ${process.env.GA_MEASUREMENT_ID}});
+        gtag('config', '${process.env.GA_MEASUREMENT_ID}'});
       `}
       </Script>
 
