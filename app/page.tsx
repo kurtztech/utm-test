@@ -5,16 +5,19 @@ export default function Home() {
   return (
     <div className="container">
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
       />
-      <Script id="google-analytics">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', '${process.env.GA_MEASUREMENT_ID}'});
-      `}
+      <Script strategy="lazyOnload" id="gtag">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
+            page_path: window.location.pathname,
+          });
+        `}
       </Script>
 
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
